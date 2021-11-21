@@ -1,5 +1,7 @@
 const express = require('express');
-const userRouter = require('./resources/users/user.router');
+const directorRouter = require('./resources/directors/director.router');
+const filmRouter = require('./resources/films/film.router');
+const resultRouter = require('./resources/results/result.router');
 
 const app = express();
 
@@ -13,6 +15,8 @@ app.use('/', (req, res, next) => {
   next();
 });
 
-app.use('/users', userRouter);
+app.use('/directors', directorRouter);
+app.use('/films', filmRouter);
+app.use('/results', resultRouter)
 
 module.exports = app;

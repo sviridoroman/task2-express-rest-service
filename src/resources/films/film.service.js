@@ -1,5 +1,5 @@
 const Film = require('./film.model');
-const Result = require("./film.model");
+const Result = require("../results/result.model");
 
 const create = async (newfilm, params) => {
   const filmCreatable = {

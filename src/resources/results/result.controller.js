@@ -37,7 +37,7 @@ exports.getAllByFilmId = catchErrors(async (req, res) => {
 });
 
 exports.getById = catchErrors(async (req, res) => {
-  const result = await resultsService.getById(req.params.Id);
+  const result = await resultsService.getById(req.params.resultId);
   if (!result) {
     return res
       .status(StatusCodes.NOT_FOUND)
@@ -47,7 +47,7 @@ exports.getById = catchErrors(async (req, res) => {
 });
 
 exports.updateById = catchErrors(async (req, res) => {
-  const result = await resultsService.updateById(req.params.Id, req.body);
+  const result = await resultsService.updateById(req.params.resultId, req.body);
   if (!result) {
     return res
       .status(StatusCodes.NOT_FOUND)
@@ -57,7 +57,7 @@ exports.updateById = catchErrors(async (req, res) => {
 });
 
 exports.deleteById = catchErrors(async (req, res) => {
-  const result = await resultsService.deleteById(req.params.Id);
+  const result = await resultsService.deleteById(req.params.resultId);
   if (!result) {
     return res
       .status(StatusCodes.NOT_FOUND)

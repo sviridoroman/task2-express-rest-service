@@ -4,7 +4,7 @@ const Result = require('./result.model');
 const create = async (newresult, params) => {
   const resultCreatable = {
     ...newresult,
-    directorId: params?.directorId,
+    filmId: params?.filmId,
   };
   return Result.create(resultCreatable);
 };

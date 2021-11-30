@@ -12,7 +12,6 @@
     "start:prod": "cross-env NODE_ENV=production node build/server.js",
     "build": "tsc -p .",
     "lint": "eslint --ext .js,.ts --fix src/"
-   
   },
   "keywords": [
     "rs",

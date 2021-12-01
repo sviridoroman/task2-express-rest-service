@@ -5,12 +5,13 @@ import FilmValidator from './film.validator';
 
 const router = Router();
 
+import { validate } from '../../middlewares';
 
 router
   .route('/:filmId')
-  .get(FilmValidator.getById(),  FilmController.getById)
-  .put(FilmValidator.updateById(), FilmController.updateById)
-  .delete(FilmValidator.deleteById(), FilmController.deleteById);
+  .get(FilmValidator.getById(), validate,  FilmController.getById)
+  .put(FilmValidator.updateById(), validate, FilmController.updateById)
+  .delete(FilmValidator.deleteById(), validate, FilmController.deleteById);
 
 router
   .route('/')
@@ -18,8 +19,8 @@ router
 
 router
   .route('/:directorId/films')
-  .post(FilmValidator.create(), FilmController.create)
-  .get(FilmValidator.getAllByDirectorId(), FilmController.getAllByDirectorId);
+  .post(FilmValidator.create(), validate, FilmController.create)
+  .get(FilmValidator.getAllByDirectorId(), validate, FilmController.getAllByDirectorId);
   
 
 export default router;

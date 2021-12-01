@@ -1,0 +1,20 @@
+2021-12-02 01:04:55 info: GET /directors/ 200 {} {} {"name":"22222","surname":"surname","country":"country","birthday":"01/01/2000"} - 2.464 ms
+2021-12-02 01:05:09 info: GET /directors/ 200 {} {} {"name":"22222","surname":"surname","country":"country","birthday":"01/01/2000"} - 0.695 ms
+2021-12-02 01:05:16 info: POST /directors/ 201 {} {} {"name":"22222","surname":"surname","country":"country","birthday":"01/01/2000"} - 8.403 ms
+2021-12-02 01:05:45 info: GET /directors/ 200 {} {} {"name":"22222","surname":"surname","country":"country","birthday":"01/01/2000"} - 0.302 ms
+2021-12-02 01:05:55 info: POST /directors/ 201 {} {} {"name":"22222","surname":"surname","country":"country","birthday":"01/01/2000"} - 0.888 ms
+2021-12-02 01:06:01 info: GET /directors/ 200 {} {} {"name":"22222","surname":"surname","country":"country","birthday":"01/01/2000"} - 0.446 ms
+2021-12-02 01:06:22 info: GET /directors/812d97f0-2657-467a-9e3b-25da6fec75b8 200 {} {"directorId":"812d97f0-2657-467a-9e3b-25da6fec75b8"} {"name":"22222","surname":"surname","country":"country","birthday":"01/01/2000"} - 0.995 ms
+2021-12-02 01:06:30 error: FAIL Param :directorId must be valid uuid format
+2021-12-02 01:06:30 error: GET /directors/812d97f0-2657-467a-9e3b-25da6fec75b 400 - 2.116 ms - Param :directorId must be valid uuid format
+2021-12-02 01:06:53 info: GET /directors/ 200 {} {} {"name":"22222","surname":"surname","country":"country","birthday":"01/01/2000"} - 0.260 ms
+2021-12-02 01:07:06 info: POST /films/369c4040-b3bc-49ba-8667-cefba2820426/films 201 {} {"directorId":"369c4040-b3bc-49ba-8667-cefba2820426"} {} - 0.976 ms
+2021-12-02 01:07:12 info: POST /films/369c4040-b3bc-49ba-8667-cefba2820426/films 201 {} {"directorId":"369c4040-b3bc-49ba-8667-cefba2820426"} {} - 1.123 ms
+2021-12-02 01:07:13 info: POST /films/369c4040-b3bc-49ba-8667-cefba2820426/films 201 {} {"directorId":"369c4040-b3bc-49ba-8667-cefba2820426"} {} - 0.701 ms
+2021-12-02 01:07:13 info: POST /films/369c4040-b3bc-49ba-8667-cefba2820426/films 201 {} {"directorId":"369c4040-b3bc-49ba-8667-cefba2820426"} {} - 0.691 ms
+2021-12-02 01:07:20 error: FAIL Param :directorId must be valid uuid format
+2021-12-02 01:07:20 error: POST /films/aa369c4040-b3bc-49ba-8667-cefba2820426/films 400 - 1.758 ms - Param :directorId must be valid uuid format
+2021-12-02 01:07:39 info: GET /films/ 200 {} {} {} - 0.516 ms
+2021-12-02 01:07:50 info: POST /results/ee7587f7-b312-4d44-a571-8a88f687222e/results 201 {} {"filmId":"ee7587f7-b312-4d44-a571-8a88f687222e"} {} - 0.946 ms
+2021-12-02 01:07:59 error: FAIL Param :filmId must be valid uuid format
+2021-12-02 01:07:59 error: POST /results/ee7587f7-b312-4d44-a571-8a88f687222es/results 400 - 1.605 ms - Param :filmId must be valid uuid format

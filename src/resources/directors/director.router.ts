@@ -3,17 +3,19 @@ import { Router } from 'express';
 import DirectorController from './director.controller';
 import DirectorValidator from './director.validator';
 
+import { validate } from '../../middlewares';
+
 const router = Router();
 
 router
   .route('/')
   .get(DirectorController.getAll)
-  .post(DirectorValidator.create(), DirectorController.create);
+  .post(DirectorValidator.create(), validate, DirectorController.create);
 
 router
   .route('/:directorId')
-  .get(DirectorValidator.getById(), DirectorController.getById)
-  .put(DirectorValidator.updateById(), DirectorController.updateById)
-  .delete(DirectorValidator.deleteById(), DirectorController.deleteById);
+  .get(DirectorValidator.getById(), validate, DirectorController.getById)
+  .put(DirectorValidator.updateById(), validate, DirectorController.updateById)
+  .delete(DirectorValidator.deleteById(), validate, DirectorController.deleteById);
 
 export default router;

@@ -4,3 +4,5 @@
 2021-12-02 01:07:20 error: POST /films/aa369c4040-b3bc-49ba-8667-cefba2820426/films 400 - 1.758 ms - Param :directorId must be valid uuid format
 2021-12-02 01:07:59 error: FAIL Param :filmId must be valid uuid format
 2021-12-02 01:07:59 error: POST /results/ee7587f7-b312-4d44-a571-8a88f687222es/results 400 - 1.605 ms - Param :filmId must be valid uuid format
+2021-12-02 23:14:09 error: FAIL Param :filmId must be valid uuid format
+2021-12-02 23:14:09 error: GET /films/a 400 - 7.579 ms - Param :filmId must be valid uuid format

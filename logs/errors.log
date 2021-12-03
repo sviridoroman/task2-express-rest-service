@@ -6,3 +6,7 @@
 2021-12-02 01:07:59 error: POST /results/ee7587f7-b312-4d44-a571-8a88f687222es/results 400 - 1.605 ms - Param :filmId must be valid uuid format
 2021-12-02 23:14:09 error: FAIL Param :filmId must be valid uuid format
 2021-12-02 23:14:09 error: GET /films/a 400 - 7.579 ms - Param :filmId must be valid uuid format
+2021-12-02 23:39:33 error: FAIL Not found
+2021-12-02 23:39:33 error: POST /films/fcab7754-dbfc-43d8-a3f7-9421bb877401/film 404 - 1.792 ms - Not found
+2021-12-03 23:15:51 error: FAIL Not found
+2021-12-03 23:15:51 error: POST /films/2d640c04-0d57-4d72-8a50-96ab06654bcc/film 404 - 1.632 ms - Not found

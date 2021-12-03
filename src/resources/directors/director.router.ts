@@ -10,7 +10,7 @@ const router = Router();
 router
   .route('/')
   .get(DirectorController.getAll)
-  .post(DirectorValidator.create(), validate, DirectorController.create);
+  .post(DirectorController.create);
 
 router
   .route('/:directorId')

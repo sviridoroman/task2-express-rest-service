@@ -23,6 +23,17 @@ npm install
 ```
 npm start
 ```
+### Docker
+
+To run all services use `docker-compose up`, to run it in background, use -d flag
+
+Services:
+
+- postgresql 13.3-alpine on standard port
+- pgadmin 4.5.3 on port 5050
+- express on port 4000
+
+To run cli commands, first make sure containers are running and use following command `docker exec -it <container_name> /bin/sh <command>`
 
 ## Development
 

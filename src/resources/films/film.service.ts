@@ -1,32 +1,52 @@
-import Film from './film.model';
-import { IFilm, IBaseFilm, IBaseFilmPartial } from './film.interface';
+import { getCustomRepository } from 'typeorm';
+import Film from './film.entity';
 
-import Result from '../results/result.model';
+import { FilmRepository } from './film.repository';
+import { ResultRepository } from '../results/result.repository';
 
-const create = async (directorId: string = '', payload: IBaseFilm): Promise<IFilm> => {
+
+const create = async (directorId: string, payload: Omit<Film, 'id'>): Promise<Film> => {
+  const filmRepository = getCustomRepository(FilmRepository);
   const filmCreatable = { ...payload, directorId };
-  return Film.create(filmCreatable);
+  const film = filmRepository.createNew(filmCreatable);
+  return filmRepository.save(film);
+
 };
 
-const getAll = async (): Promise<IFilm[]> => Film.getAll();
+const getAll = async (): Promise<Film[]> => {
+  const filmRepository = getCustomRepository(FilmRepository);
+  return filmRepository.getAll()
+};
 
-const getById = async (id: string = ''): Promise<IFilm | null> => Film.getById(id);
+const getById = async (id: string ): Promise<Film | null> => {
+  const filmRepository = getCustomRepository(FilmRepository);
+  const film = await filmRepository.getById(id);
+  if (!film) return null;
+  return film;
+};
 
-const updateById = async (id: string = '', payload: IBaseFilmPartial): Promise<IFilm | null> =>
-  Film.updateById(id, payload);
+const getAllByDirectorId = async (directorId: string): Promise<Film[]> => {
+  const filmRepository = getCustomRepository(FilmRepository);
+  return filmRepository.getAllByDirectorId(directorId);
+};
 
-const getAllByDirectorId = async (directorId: string = ''): Promise<IFilm[]> =>
-  Film.getAllByDirectorId(directorId);
-
-const deleteById = async (id: string = ''): Promise<IFilm | null> => {
-   const filmDeleted = await Film.deleteById(id);
+const updateById =  async (id: string, payload: Partial<Film>): Promise<Film | null> =>{
+  const filmRepository = getCustomRepository(FilmRepository);
+  await filmRepository.updatById(id,payload);
+  const film = await filmRepository.getById(id);
+  if (!film) return null;
+  return film;
+};
   
-  if (filmDeleted) {
-    const films = await Result.findAll((result) => result.filmId === filmDeleted.id);
-    films.forEach((film) => Result.updateById(film.id, { filmId: null }));
-  }
+const deleteById = async (id: string): Promise<Film | null> => {
+  const filmRepository = getCustomRepository(FilmRepository);
+   const directorDeleted = await filmRepository.getById(id);
   
-  return filmDeleted;
+  if (!directorDeleted) return null; 
+  await filmRepository.deleteById(id);
+  const resultRepository = getCustomRepository(ResultRepository);
+  await resultRepository.update({ filmId: id }, { filmId: null });
+  return directorDeleted;
  };
 
-export default { create, getAll,getAllByDirectorId, getById, updateById, deleteById };
+export default { create, getAll, getAllByDirectorId, getById, updateById, deleteById };

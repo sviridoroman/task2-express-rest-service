@@ -3,9 +3,10 @@ import { Router } from 'express';
 import FilmController from './film.controller';
 import FilmValidator from './film.validator';
 
-const router = Router();
 
 import { validate } from '../../middlewares';
+
+const router = Router();
 
 router
   .route('/:filmId')

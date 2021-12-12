@@ -1,28 +1,43 @@
-import Director from './director.model';
-import { IDirector, IBaseDirector, IBaseDirectorPartial } from './director.interface';
+import { getCustomRepository } from 'typeorm';
+import Director from './director.entity';
 
-import Film from '../films/film.model';
+import { DirectorRepository } from './director.repository';
+import { FilmRepository } from '../films/film.repository';
 
-const create = async (payload: IBaseDirector): Promise<IDirector> => 
-  Director.create(payload);
+const create = async (payload: Omit<Director, 'id'>): Promise<Director> => {
+  const directorRepository = getCustomRepository(DirectorRepository);
+  const user = directorRepository.createNew(payload);
+  return directorRepository.save(user);
+};
+
+const getAll = async (): Promise<Director[]> => {
+  const directorRepository = getCustomRepository(DirectorRepository);
+  return directorRepository.getAll()
+};
+
+const getById = async (id: string ): Promise<Director | null> => {
+  const directorRepository = getCustomRepository(DirectorRepository);
+  const director = await directorRepository.getById(id);
+  if (!director) return null;
+  return director;
+};
+
+const updateById =  async (id: string, payload: Partial<Director>): Promise<Director | null> =>{
+  const directorRepository = getCustomRepository(DirectorRepository);
+  await directorRepository.updatById(id,payload);
+  const director = await directorRepository.getById(id);
+  if (!director) return null;
+  return director;
+};
   
-;
-
-const getAll = async (): Promise<IDirector[]> => Director.getAll();
-
-const getById = async (id: string = ''): Promise<IDirector | null> => Director.getById(id);
-
-const updateById = async (id: string = '', payload: IBaseDirectorPartial): Promise<IDirector | null> =>
-  Director.updateById(id, payload);
-
-const deleteById = async (id: string = ''): Promise<IDirector | null> => {
-   const directorDeleted = await Director.deleteById(id);
+const deleteById = async (id: string): Promise<Director | null> => {
+  const directorRepository = getCustomRepository(DirectorRepository);
+   const directorDeleted = await directorRepository.getById(id);
   
-  if (directorDeleted) {
-    const films = await Film.findAll((film) => film.directorId === directorDeleted.id);
-    films.forEach((film) => Film.updateById(film.id, { directorId: null }));
-  }
-  
+  if (!directorDeleted) return null; 
+  await directorRepository.deleteById(id);
+  const filmRepository = getCustomRepository(FilmRepository);
+  await filmRepository.update({ directorId: id }, { directorId: null });
   return directorDeleted;
  };
 
